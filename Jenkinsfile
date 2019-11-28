@@ -14,7 +14,7 @@ node{
 stage('Mvn Package'){
 	   // Build using maven
 	   
-	   sh "${mvn} clean package deploy"
+	   bat "${mvn} clean package deploy"
    }
    
    
@@ -26,9 +26,9 @@ stage('Mvn Package'){
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
 	   sshagent (credentials: ['tomcat-dev']) {
-	      sh "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}sampleApp-2.0.1.RELEASE.war"
-          sh "ssh admsde@${tomcatDevIp} ${tomcatStop}"
-		  sh "ssh admsde@${tomcatDevIp} ${tomcatStart}"
+	      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}sampleApp-2.0.1.RELEASE.war"
+          bat "ssh admsde@${tomcatDevIp} ${tomcatStop}"
+		  bat "ssh admsde@${tomcatDevIp} ${tomcatStart}"
        }
    }
 }   
