@@ -1,7 +1,9 @@
 node{
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
    def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
-   
+   def source = "C:\\Fortify\\Fortify_SCA_and_Apps_19.1.0\\Samples\\advanced\\java1.5\\ResourceInjection.java"
+def clouscan_ssc = "https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc"
+def ssctoken = "b8b2b68c-0a61-4ed8-9298-a78187241d75"
    stage('SCM Checkout'){
 	checkout scm
    }
@@ -29,4 +31,32 @@ stage('Mvn Package'){
 	}
 	
 	
+	
+	
+    
+    stage ('Fortify Clean') {
+        bat "sourceanalyzer -b java1.5 -clean"
+    }
+    
+    stage ('Fortify Translate') {
+        bat "sourceanalyzer -b java1.5 -source 1.5 ${source}"
+    }
+
+    stage ('Fortify CloudScan Scan and Upload') {
+        bat "cloudscan.bat -sscurl ${clouscan_ssc} -ssctoken ${ssctoken} start -upload -versionid 2 -b java1.5 -uptoken ${ssctoken} -scan -Xmx2G"
+    }
+    
+	
+	stage('UITest') {
+        echo 'Start tosca UI test...'
+        dir("C:/toscaci")
+        {
+            sh '''
+            java -jar ToscaCIJavaClient.jar -m distributed -c "filter-seab.xml"
+            cp result.xml "${WORKSPACE}"
+            '''
+        }
+        junit 'result.xml'
+        echo 'End tosca UI test...'
+    }
 }   
