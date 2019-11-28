@@ -10,7 +10,7 @@ node{
 stage('Mvn Package'){
 	   // Build using maven
 	   
-	   bat "${mvn} mvn install"
+	   bat "${mvn} install"
    }
    
    
