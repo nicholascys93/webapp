@@ -62,16 +62,5 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
     
 	
 	
-	stage('UITest') {
-        echo 'Start tosca UI test...'
-        dir("C:/toscaci")
-        {
-            sh '''
-            java -jar ToscaCIJavaClient.jar -m distributed -c "filter-seab.xml"
-            cp result.xml "${WORKSPACE}"
-            '''
-        }
-        junit 'result.xml'
-        echo 'End tosca UI test...'
-    }
+	
 }   
