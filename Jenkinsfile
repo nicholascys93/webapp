@@ -2,13 +2,9 @@ node{
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
    def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
    
-   //stage('SCM Checkout'){
-    // Clone repo
-	//git branch: 'master', 
-	//credentialsId: 'github', 
-	//file:///C:/Program%20Files/Git/webapp
-   
-   //}
+   stage('SCM Checkout'){
+	checkout scm
+   }
 
 
 stage('Mvn Package'){
