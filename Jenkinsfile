@@ -25,7 +25,8 @@ stage('Mvn Package'){
          sh 'scp -o StrictHostKeyChecking=no target/*.war admsde@72.20.4.13:/opt/tomcat/webapps/'
       }
 	   
-	   
+	wget --http-user=deployer --http-password=password "http://172.20.4.13:9090/manager/text/deploy?war=file:/target/*.war&path=/SomeWar" -O -
+   
 	//   sshagent (credentials: ['tomcat-dev']) {
 	//      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}*.war"
         //  bat "ssh admsde@${tomcatDevIp} ${tomcatStop}"
