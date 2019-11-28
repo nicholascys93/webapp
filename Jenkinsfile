@@ -24,7 +24,7 @@ stage('Mvn Package'){
 bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE&update=true"'
    }
 	stage ('Fortify Clean') {
-        bat "sourceanalyzer -b java1.5 -clean"
+        bat "sourceanalyzer -b jenkinsdemo -clean"
     }
     
     stage ('Fortify Translate') {
@@ -37,7 +37,7 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
 
     stage ('Fortify CloudScan Scan') {
         
-fortifyCloudScan buildId: 'java 1.5', buildLabel: '', buildProject: '', buildVersion: '', disableSnippets: false, disableSourceRendering: false, filter: '', noDefaultRules: false, quick: false, rmiWorkerMaxHeap: '', rules: '', scanArgs: '', sscToken: 'ccdc6c48-3302-4434-95cb-aa36b35ac63a', upToken: 'f0259a88-ade5-4605-9ade-887331db710c', useAutoHeap: false, useParallelAnalysis: true, useSsc: true, versionId: '53', xmx: ''
+fortifyCloudScan buildId: 'jenkinsdemo', buildLabel: '', buildProject: '', buildVersion: '', disableSnippets: false, disableSourceRendering: false, filter: '', noDefaultRules: false, quick: false, rmiWorkerMaxHeap: '', rules: '', scanArgs: '', sscToken: 'ccdc6c48-3302-4434-95cb-aa36b35ac63a', upToken: 'f0259a88-ade5-4605-9ade-887331db710c', useAutoHeap: false, useParallelAnalysis: true, useSsc: true, versionId: '53', xmx: ''
 //bat "cloudscan.bat -sscurl ${clouscan_ssc} -ssctoken ${ssctoken} start -upload -versionid 2 -b java1.5 -uptoken ${ssctoken} -scan -Xmx2G"
     }
 	    stage ('Fortify upload') {
