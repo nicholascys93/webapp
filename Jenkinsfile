@@ -14,15 +14,13 @@ stage('Mvn Package'){
    }
    
    
-   stage('deploy-to tomcat'){
-      
-	
-//file:///C:/Program%20Files%20(x86)/Jenkins/workspace/Demo2/target		 
+   stage('deploy-to tomcat'){		 
 bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE"'
-		 
-		 
-		 
-		 
-		
    }
+	
+	
+	stage('QA nexus iq')
+	{
+		nexusPolicyEvaluation advancedProperties: '', failBuildOnNetworkError: false, iqApplication: selectedApplication('jenkinsdemo'), iqStage: 'stage-release', jobCredentialsId: ''
+	}
 }   
