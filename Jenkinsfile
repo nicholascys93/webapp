@@ -1,7 +1,9 @@
 node{
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
    def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
-   def source = "C:\\Fortify\\Fortify_SCA_and_Apps_19.1.0\\Samples\\advanced\\java1.5\\ResourceInjection.java"
+   def source = "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war"
+
+
 def clouscan_ssc = "https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc"
 def ssctoken = "b8b2b68c-0a61-4ed8-9298-a78187241d75"
    stage('SCM Checkout'){
