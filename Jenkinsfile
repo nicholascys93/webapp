@@ -6,7 +6,7 @@ node{
     // Clone repo
 	//git branch: 'master', 
 	//credentialsId: 'github', 
-	url: 'C:\Program Files\Git\webapp'
+	file:///C:/Program%20Files/Git/webapp/
    
  //  }
 
