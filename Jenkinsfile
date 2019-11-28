@@ -18,7 +18,7 @@ stage('Mvn Package'){
       
 	
 //file:///C:/Program%20Files%20(x86)/Jenkins/workspace/Demo2/target		 
-bat "curl --upload-file /*.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy" "
+bat label: '', script: 'curl --upload-file /*.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy"'
 		 
 		 
 		 
