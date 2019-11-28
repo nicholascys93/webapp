@@ -18,9 +18,9 @@ stage('Mvn Package'){
    }
    
    
-//   stage('deploy-to tomcat'){		 
-//bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE"'
-//   }
+   stage('deploy-to tomcat'){		 
+bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE&update=true"'
+   }
 	
 	stage('Sonar Qube')
 	{
