@@ -3,7 +3,7 @@ node{
    def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
    //def source = "C:\\Program%20Files%20(x86)\\Jenkins\\workspace\\Demo2\\target\\sampleApp-2.0.1.RELEASE.war"
 	
-	def source = "C:\\Program Files (x86)\\Jenkins\\workspace\\Demo2\\src"
+	def source = "C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src"
 
 
 def clouscan_ssc = "https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc"
@@ -44,7 +44,7 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
     
     stage ('Fortify Translate') {
         //bat "sourceanalyzer -b java1.5 -source 1.5 ${source}"
-	    fortifyTranslate addJVMOptions: '', buildID: 'java1.5', excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: 'C:\\Program Files (x86)\\Jenkins\\workspace\\Demo2\\src', javaVersion: '1.8')
+	    fortifyTranslate addJVMOptions: '', buildID: 'java1.5', excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: 'C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src', javaVersion: '1.8')
     }
 
     stage ('Fortify CloudScan Scan') {
