@@ -22,7 +22,7 @@ stage('Mvn Package'){
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
 	   sshagent (credentials: ['tomcat-dev']) {
-	      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}sampleApp-2.0.1.RELEASE.war"
+	      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}*.war"
           bat "ssh admsde@${tomcatDevIp} ${tomcatStop}"
 		  bat "ssh admsde@${tomcatDevIp} ${tomcatStart}"
        }
