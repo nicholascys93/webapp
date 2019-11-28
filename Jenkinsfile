@@ -21,10 +21,15 @@ stage('Mvn Package'){
 	   def tomcatStart = "${tomcatHome}bin/startup.sh"
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
-	   sshagent (credentials: ['tomcat-dev']) {
-	      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}*.war"
-          bat "ssh admsde@${tomcatDevIp} ${tomcatStop}"
-		  bat "ssh admsde@${tomcatDevIp} ${tomcatStart}"
-       }
+	   sshagent(['tomcat-dev']) {
+         sh 'scp -o StrictHostKeyChecking=no target/*.war admsde@72.20.4.13:/opt/tomcat/webapps/'
+      }
+	   
+	   
+	//   sshagent (credentials: ['tomcat-dev']) {
+	//      bat "scp -o StrictHostKeyChecking=no target/*.war admsde@${tomcatDevIp}:${webApps}*.war"
+        //  bat "ssh admsde@${tomcatDevIp} ${tomcatStop}"
+	//	  bat "ssh admsde@${tomcatDevIp} ${tomcatStart}"
+       //}
    }
 }   
