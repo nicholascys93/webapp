@@ -20,10 +20,7 @@ stage('Mvn Package'){
 	
 	stage('Sonar Qube')
 	{
-	bat label: '', script: '''mvn sonar:sonar \\
-  -Dsonar.projectKey=jenkinsdemo \\
-  -Dsonar.host.url=http://172.20.4.25:9000 \\
-  -Dsonar.login=ad0e5f82ebd92ade43d8e5d3a1a8ccc356f693f4'''
+	bat label: '', script: '''mvn sonar:sonar -Dsonar.projectKey=jenkinsdemo -Dsonar.host.url=http://172.20.4.25:9000 -Dsonar.login=ad0e5f82ebd92ade43d8e5d3a1a8ccc356f693f4'''
 	
 	}
 	stage('QA nexus iq')
