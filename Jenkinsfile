@@ -48,7 +48,7 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
     }
 
     stage ('Fortify CloudScan Scan and upload') {
-   bat label: '', script: 'cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken ccdc6c48-3302-4434-95cb-aa36b35ac63a start -upload -versionid 1 -b jenkinsdemo -uptoken f0259a88-ade5-4605-9ade-887331db710c -scan -Xmx2G'
+   bat label: '', script: 'cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken b8b2b68c-0a61-4ed8-9298-a78187241d75 start -upload  --application jenkinsdemo --application-version -b jenkinsdemo -uptoken b8b2b68c-0a61-4ed8-9298-a78187241d75 -scan -Xmx2G'
 	    
 	    //cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken ccdc6c48-3302-4434-95cb-aa36b35ac63a start -upload -versionid 1 -b jenkinsdemo -uptoken f0259a88-ade5-4605-9ade-887331db710c -scan -Xmx2G     
  //fortifyCloudScan buildId: 'jenkinsdemo', buildLabel: '', buildProject: '', buildVersion: '', disableSnippets: false, disableSourceRendering: false, filter: '', noDefaultRules: false, quick: false, rmiWorkerMaxHeap: '', rules: '', scanArgs: '', sscToken: 'ccdc6c48-3302-4434-95cb-aa36b35ac63a', upToken: 'f0259a88-ade5-4605-9ade-887331db710c', useAutoHeap: false, useParallelAnalysis: true, useSsc: true, versionId: '53', xmx: ''
