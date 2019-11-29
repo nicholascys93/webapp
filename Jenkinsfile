@@ -36,19 +36,19 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
 	}
 	
 	stage ('Fortify Clean') {
-        bat "sourceanalyzer -b benchmark -clean"
+        bat "sourceanalyzer -b jenkinsdemo -clean"
     }
     
     stage ('Fortify Translate') {
 	    
-	    bat label: '', script: 'sourceanalyzer -b benchmark -cp "lib/*.jar" "src/**/*.java"'
+	    bat label: '', script: 'sourceanalyzer -b jenkinsdemo -cp "lib/*.jar" "src/**/*.java"'
 	    //sourceanalyzer -b ava1.5 -cp "lib/*.jar" "src/**/*.java"
         //bat "sourceanalyzer -b java1.5 -source 1.5 ${source}"
 	//    fortifyTranslate addJVMOptions: '', buildID: 'java1.5', excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: 'C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src', javaVersion: '1.8')
     }
 
     stage ('Fortify CloudScan Scan and upload') {
-   bat label: '', script: 'cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken ccdc6c48-3302-4434-95cb-aa36b35ac63a start -upload -versionid 1 -b benchmark -uptoken f0259a88-ade5-4605-9ade-887331db710c -scan -Xmx2G'
+   bat label: '', script: 'cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken ccdc6c48-3302-4434-95cb-aa36b35ac63a start -upload -versionid 1 -b jenkinsdemo -uptoken f0259a88-ade5-4605-9ade-887331db710c -scan -Xmx2G'
 	    
 	    //cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken ccdc6c48-3302-4434-95cb-aa36b35ac63a start -upload -versionid 1 -b jenkinsdemo -uptoken f0259a88-ade5-4605-9ade-887331db710c -scan -Xmx2G     
  //fortifyCloudScan buildId: 'jenkinsdemo', buildLabel: '', buildProject: '', buildVersion: '', disableSnippets: false, disableSourceRendering: false, filter: '', noDefaultRules: false, quick: false, rmiWorkerMaxHeap: '', rules: '', scanArgs: '', sscToken: 'ccdc6c48-3302-4434-95cb-aa36b35ac63a', upToken: 'f0259a88-ade5-4605-9ade-887331db710c', useAutoHeap: false, useParallelAnalysis: true, useSsc: true, versionId: '53', xmx: ''
