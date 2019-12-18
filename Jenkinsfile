@@ -1,4 +1,4 @@
-node{
+node(label: 'slave'){
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
    def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
    //def source = "C:\\Program%20Files%20(x86)\\Jenkins\\workspace\\Demo2\\target\\sampleApp-2.0.1.RELEASE.war"
