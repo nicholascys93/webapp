@@ -1,6 +1,6 @@
 node{
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
-   def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
+  // def mvn = tool (name: 'maven 3.6.1', type: 'maven') + '\\bin\\mvn'
    //def source = "C:\\Program%20Files%20(x86)\\Jenkins\\workspace\\Demo2\\target\\sampleApp-2.0.1.RELEASE.war"
 	
 	def source = "C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src"
@@ -16,7 +16,7 @@ def ssctoken = "b8b2b68c-0a61-4ed8-9298-a78187241d75"
 stage('Mvn Package'){
 	   // Build using maven
 	   
-	   bat "${mvn} install"
+	   bat "mvn install"
    }
    
    
