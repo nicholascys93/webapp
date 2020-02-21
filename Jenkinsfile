@@ -4,10 +4,10 @@ node{
    //def source = "C:\\Program%20Files%20(x86)\\Jenkins\\workspace\\Demo2\\target\\sampleApp-2.0.1.RELEASE.war"
 	
 	def source = "C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src"
-
+//b8b2b68c-0a61-4ed8-9298-a78187241d75
 
 def clouscan_ssc = "https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc"
-def ssctoken = "b8b2b68c-0a61-4ed8-9298-a78187241d75"
+def ssctoken = "c73a5269-b62b-486b-bb41-01392b328afa"
    stage('SCM Checkout'){
 	checkout scm
    }
