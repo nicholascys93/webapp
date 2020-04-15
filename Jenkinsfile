@@ -17,7 +17,7 @@ def ssctoken = "b313fd42-f02e-48e6-aacf-d4f201b808ea"
 stage('Mvn Package'){
 	   // Build using maven
 	   
-	   bat "${mvn} install"
+	   bat "mvn install"
    }
    
    
