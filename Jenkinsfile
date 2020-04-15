@@ -1,7 +1,7 @@
 node(label: 'slave test 2 layer'){
 	
 //def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
-   //def mvn = tool (name: 'maven3', type: 'maven') + '\\bin\\mvn'
+   def mvn = tool (name: 'maven3', type: 'maven') + '\\bin\\mvn'
    //def source = "C:\\Program%20Files%20(x86)\\Jenkins\\workspace\\Demo2\\target\\sampleApp-2.0.1.RELEASE.war"
 	
 	def source = "C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src"
@@ -17,7 +17,7 @@ def ssctoken = "b313fd42-f02e-48e6-aacf-d4f201b808ea"
 stage('Mvn Package'){
 	   // Build using maven
 	   
-	   bat "D:\maven\apache-maven-3.6.3\bin\mvn install"
+	   bat "${mvn} install"
    }
    
    
