@@ -44,11 +44,7 @@ mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean &
 mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & 
 mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & 
 mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="%APPNAME%" -Dfortify.ssc.applicationVersion="%APPVER%" & 
-BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\target\fortify\%APPNAME%-%APPVER%.fpr" -format PDF -showSuppressed -output "D:\FORTIFY-RESULTS-CODESPARKS\%APPNAME%-%APPVER%_Developer_Workbook.pdf"
-
-
-
-mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="confluence-manager-service" -Dfortify.ssc.applicationVersion="1.0.0""    
+BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\target\fortify\%APPNAME%-%APPVER%.fpr" -format PDF -showSuppressed -output "D:\FORTIFY-RESULTS-CODESPARKS\%APPNAME%-%APPVER%_Developer_Workbook.pdf""    
     }    
 	       
   
