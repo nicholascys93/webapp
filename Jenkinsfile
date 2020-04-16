@@ -39,7 +39,7 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
 	
 
     stage ('Fortify Scan and upload') {
-  for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.version -q -DforceStdout`) do (set APPVER=%%i) & for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.artifactId -q -DforceStdout`) do (set APPNAME=%%i) & 
+  bat "for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.version -q -DforceStdout`) do (set APPVER=%%i) & for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.artifactId -q -DforceStdout`) do (set APPNAME=%%i) & 
 mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & 
 mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & 
 mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & 
@@ -48,7 +48,7 @@ BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\target\f
 
 
 
-mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="confluence-manager-service" -Dfortify.ssc.applicationVersion="1.0.0"    
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="confluence-manager-service" -Dfortify.ssc.applicationVersion="1.0.0""    
     }    
 	       
   
