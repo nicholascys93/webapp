@@ -14,16 +14,16 @@ def ssctoken = "b313fd42-f02e-48e6-aacf-d4f201b808ea"
    }
 
 
-stage('Mvn Package'){
+//stage('Mvn Package'){
 	   // Build using maven
 	   
-	   bat "mvn install -Dmaven.test.failure.ignore=true"
-   }
+//	   bat "mvn install -Dmaven.test.failure.ignore=true"
+//   }
    
    
-   stage('deploy-to tomcat'){		 
-bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE&update=true"'
-   }
+//   stage('deploy-to tomcat'){		 
+//bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEASE.war "http://deployer:password@172.20.4.13:9090/manager/text/deploy?path=/sampleApp-2.0.1.RELEASE&update=true"'
+//   }
 	
 	
 	//stage('Sonar Qube')
