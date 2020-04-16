@@ -36,21 +36,19 @@ bat label: '', script: 'curl --upload-file "%CD%"\\target\\sampleApp-2.0.1.RELEA
 	//	nexusPolicyEvaluation advancedProperties: '', failBuildOnNetworkError: false, iqApplication: selectedApplication('jenkinsdemo'), iqStage: 'stage-release', jobCredentialsId: ''
 	//}
 	
-	stage ('Fortify Clean') {
-        bat "sourceanalyzer -b jenkinsdemo -clean"
-    }
-    
-    stage ('Fortify Translate') {
-	    
-	    bat label: '', script: 'sourceanalyzer -b jenkinsdemo -cp "lib/*.jar" "src/**/*.java"'
-	    //sourceanalyzer -b ava1.5 -cp "lib/*.jar" "src/**/*.java"
-        //bat "sourceanalyzer -b java1.5 -source 1.5 ${source}"
-	//    fortifyTranslate addJVMOptions: '', buildID: 'java1.5', excludeList: '', logFile: '', maxHeap: '', projectScanType: fortifyJava(javaAddOptions: '', javaClasspath: '', javaSrcFiles: 'C:\\Program Files (x86)\\Jenkins\\workspace\\Demo\\src', javaVersion: '1.8')
-    }
+	
 
-    stage ('Fortify CloudScan Scan and upload') {
-   //bat label: '', script: 'cloudscan.bat -sscurl https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc -ssctoken b8b2b68c-0a61-4ed8-9298-a78187241d75 start -upload  --application jenkinsdemo --application-version -b jenkinsdemo -uptoken b8b2b68c-0a61-4ed8-9298-a78187241d75 -scan -Xmx2G'
-		bat "cloudscan.bat -sscurl ${clouscan_ssc} -ssctoken ${ssctoken} start -upload -versionid 53 -b jenkinsdemo -uptoken ${ssctoken} -scan -Xmx2G"
+    stage ('Fortify Scan and upload') {
+  for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.version -q -DforceStdout`) do (set APPVER=%%i) & for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.artifactId -q -DforceStdout`) do (set APPNAME=%%i) & 
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & 
+mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & 
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & 
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="%APPNAME%" -Dfortify.ssc.applicationVersion="%APPVER%" & 
+BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\target\fortify\%APPNAME%-%APPVER%.fpr" -format PDF -showSuppressed -output "D:\FORTIFY-RESULTS-CODESPARKS\%APPNAME%-%APPVER%_Developer_Workbook.pdf"
+
+
+
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="confluence-manager-service" -Dfortify.ssc.applicationVersion="1.0.0"    
     }    
 	       
   
