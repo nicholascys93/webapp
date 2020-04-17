@@ -39,12 +39,10 @@ def ssctoken = "b313fd42-f02e-48e6-aacf-d4f201b808ea"
 	
 
     stage ('Fortify Scan and upload') {
-  bat label: '', script: '''for /f "usebackq delims=" %%i in (`mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression^=project.version -q -DforceStdout`) do (set APPVER=%%i) & 
-  mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & 
-  mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & 
-  mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & 
-  mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="%APPNAME%" -Dfortify.ssc.applicationVersion="%APPVER%" & 
-  BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\\target\\fortify\\%APPNAME%-%APPVER%.fpr" -format PDF -showSuppressed -output "D:\\FORTIFY-RESULTS-CODESPARKS\\%APPNAME%-%APPVER%_Developer_Workbook.pdf"
+  bat label: '', script: '''mvn com.fortify.sca.plugins.maven:sca-maven-plugin:clean & 
+mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests & 
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan & 
+mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="jenkinsdemo" -Dfortify.ssc.applicationVersion="1"
   '''
     }    
 	       
