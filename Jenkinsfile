@@ -43,7 +43,7 @@ def ssctoken = "b313fd42-f02e-48e6-aacf-d4f201b808ea"
 	    bat label: '', script: '''mvn package com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:translate -DskipTests'''
 bat label: '', script: '''mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:scan'''	    
 	    bat label: '', script: '''mvn com.fortify.sca.plugins.maven:sca-maven-plugin:19.1.0:upload -Dfortify.ssc.authToken="e3c8e389-86a4-4d18-a70f-e9ca6d0ae6ee" -Dfortify.ssc.url="https://sde-fssc-01.codesparks.ncs.com.sg:8443/ssc" -Dfortify.ssc.applicationName="jenkinsdemo" -Dfortify.ssc.applicationVersion="1"'''
-	    
+	    bat label: '', script: '''BIRTReportGenerator -template "Developer Workbook" -source "%WORKSPACE%\\target\\fortify\\jenkinsdemo-1.fpr" -format PDF -showSuppressed -output "D:\\FORTIFY-RESULTS-CODESPARKS\\jenkinsdemo-1_Developer_Workbook.pdf"'''
     }    
 	       
   
